@@ -82,21 +82,17 @@ int main(int argc, char *argv[]) {
 int dayOfWeek(int doomsday, int leapYear, int month, int day) {
 	
 	int dayOfWeek;
-	int Y2LastDgt;
-	int anchor;
-	int century;
+	
 
 	// INSERT YOUR CODE HERE
 	
-	century = (year - (year % 100))/100;
-	Y2LastDgt = year % 100;
+
+	doomsday = (TUESDAY + year + (year / 4) - (year / 100) + (year / 400))%7;
+	printf("%d is doomsday\n", doomsday);
 
 
-	//Tuesday devrais etre a la place de saturday, mais les set var sont pas comme dans WIKIPEDIA... j'ai besoin du jour valeur "02"
-	anchor = (5*(century % 4) % 7 + SATURDAY);
 
-	doomsday = ((Y2LastDgt / 12) + Y2LastDgt % 12 + ((Y2LastDgt % 12) / 4) % 7 + anchor);
-	printf("%d", doomsday);
+
 
 	//faut kisspasskekchose icitte
 

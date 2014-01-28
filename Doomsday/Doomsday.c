@@ -28,8 +28,22 @@
 #define DAYS_PER_WEEK 7
 
 int dayOfWeek(int doomsday, int leapYear, int month, int day);
+int isLeapYear(int year);
+
+int day;
+int month;
+int year;
+
 
 int main(int argc, char *argv[]) {
+
+	printf("Enter Day(DD)\n");
+	scanf("%d", &day);
+	printf("Enter Month(MM)\n");
+	scanf("%d", &month);
+	printf("Enter Year(YYYY)\n");
+	scanf("%d", &year);
+
 	assert(dayOfWeek(THURSDAY, FALSE, 4, 4) == THURSDAY);
 	assert(dayOfWeek(FRIDAY, FALSE, 6, 6) == FRIDAY);
 	assert(dayOfWeek(MONDAY, FALSE, 8, 8) == MONDAY);
@@ -66,9 +80,26 @@ int main(int argc, char *argv[]) {
 // given month and day in the year.
 
 int dayOfWeek(int doomsday, int leapYear, int month, int day) {
+	
 	int dayOfWeek;
+	int Y2LastDgt;
+	int anchor;
+	int century;
 
 	// INSERT YOUR CODE HERE
+	
+	century = (year - (year % 100))/100;
+	Y2LastDgt = year % 100;
+
+
+	//Tuesday devrais etre a la place de saturday, mais les set var sont pas comme dans WIKIPEDIA... j'ai besoin du jour valeur "02"
+	anchor = (5*(century % 4) % 7 + SATURDAY);
+
+	doomsday = ((Y2LastDgt / 12) + Y2LastDgt % 12 + ((Y2LastDgt % 12) / 4) % 7 + anchor);
+	printf("%d", doomsday);
+
+	//faut kisspasskekchose icitte
+
 
 	return (dayOfWeek);
 }
@@ -82,53 +113,54 @@ int dayOfWeek(int doomsday, int leapYear, int month, int day) {
 #include <assert.h>
 #define StartOfGreg 1582
 
-int isLeapYear(int Year);
+int isLeapYear(int year);
 
 int main(int argc, char* argv[])
 {
-	int Year;
+	int year;
 
 	printf("Enter a Year\n");
-	scanf("%d", &Year);
+	scanf("%d", &year);
 
 	//debut du calendrier greg
 	//pas de leap year avant
 	assert(Year >= StartOfGreg);
 
 	//check true or false 
-	if (isLeapYear(Year) == 1) {
+	if (isLeapYear(year) == 1) {
 		printf("%d is a leap year\n", Year);
 	}
 	else
 	{
-		printf("%d is not a leap year\n", Year);
+		printf("%d is not a leap year\n", year);
 	}
 	return EXIT_SUCCESS;
 }**/
 
-int isLeapYear(int Year)
+int isLeapYear(int year)
 {
 
 	int leapYear;
 
-	if ((Year % 4) == 0) {
-		if ((Year % 100) == 0) {
-			if ((Year % 400) == 0) {
-				leapYear = 1;
+	if ((year % 4) == 0) {
+		if ((year % 100) == 0) {
+			if ((year % 400) == 0) {
+				leapYear = TRUE;
 			}
 			else
 			{
-				leapYear = 0;
+				leapYear = FALSE;
 			}
 		}
 		else
 		{
-			leapYear = 1;
+			leapYear = TRUE;
 		}
 	}
 	else
 	{
-		leapYear = 0;
+		leapYear = FALSE;
 	}
 	return leapYear;
 }
+

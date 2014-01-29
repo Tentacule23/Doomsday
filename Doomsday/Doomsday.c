@@ -23,6 +23,8 @@
 #define TUESDAY  5
 #define WEDNESDAY 6
 
+#define START_OF_GREG 1582
+
 #define TRUE 1
 #define FALSE 0
 #define DAYS_PER_WEEK 7
@@ -36,10 +38,11 @@ int month;
 int year;
 int doomsday;
 int leapYear;
+int ansdayOfWeek;
 
 int main(int argc, char *argv[]) {
 
-
+	//Test
 	assert(dayOfWeek(THURSDAY, FALSE, 4, 4) == THURSDAY);
 	assert(dayOfWeek(FRIDAY, FALSE, 6, 6) == FRIDAY);
 	assert(dayOfWeek(MONDAY, FALSE, 8, 8) == MONDAY);
@@ -65,26 +68,64 @@ int main(int argc, char *argv[]) {
 	assert(dayOfWeek(TUESDAY, FALSE, 2, 28) == TUESDAY);
 	assert(dayOfWeek(TUESDAY, FALSE, 2, 27) == MONDAY);
 	assert(dayOfWeek(THURSDAY, FALSE, 1, 3) == THURSDAY);
-	
+	assert(dayOfWeek(TUESDAY, TRUE, 01, 20) == THURSDAY);
 
 	printf("all tests passed - You are awesome!\n");
 
+	//Demande Date
 	printf("Enter Day(DD)\n");
 	scanf("%d", &day);
+	//check les date negative et les date au dessus de 31
+	assert(day < 32);
+	assert(0 < day);
+
 	printf("Enter Month(MM)\n");
 	scanf("%d", &month);
+	//check les date negative et les date au dessus de 12
+	assert(month < 13);
+	assert(0 < month);
+
 	printf("Enter Year(YYYY)\n");
 	scanf("%d", &year);
-
-	//doomsday = (TUESDAY + year + (year / 4) - (year / 100) + (year / 400)) % 7;
+	//check le debut du calendrier greg
+	assert(year > START_OF_GREG);
+	
 
 	isLeapYear(year);
 	zedoomsday(year);
-	dayOfWeek(doomsday, leapYear, month, day);
-	int answer;
-	answer = dayOfWeek(doomsday, leapYear, month, day);
+	dayOfWeek(zedoomsday(year), isLeapYear(year), month, day);
 
-	printf("%d is day of week\n", answer);
+	ansdayOfWeek = dayOfWeek(zedoomsday(year), isLeapYear(year), month, day);
+	
+	//tranforme ansdayofweek en jour de semaine parce que je sais pas comment faire autrement
+	if (ansdayOfWeek == 0)
+	{
+		printf("The %d/%d/%d is a Thursday!\n", day, month, year);
+	}
+	if (ansdayOfWeek == 1)
+	{
+		printf("The %d/%d/%d is a Friday!\n", day, month, year);
+	}
+	if (ansdayOfWeek == 2)
+	{
+		printf("The %d/%d/%d is a Saturday!\n", day, month, year);
+	}
+	if (ansdayOfWeek == 3)
+	{
+		printf("The %d/%d/%d is a Sunday!\n", day, month, year);
+	}
+	if (ansdayOfWeek == 4)
+	{
+		printf("The %d/%d/%d is a Monday!\n", day, month, year);
+	}
+	if (ansdayOfWeek == 5)
+	{
+		printf("The %d/%d/%d is a Tuesday!\n", day, month, year);
+	}
+	if (ansdayOfWeek == 6)
+	{
+		printf("The %d/%d/%d is a Wednesday!\n", day, month, year);
+	}
 
 	return EXIT_SUCCESS;
 }
@@ -166,20 +207,23 @@ int dayOfWeek(int doomsday, int leapYear, int month, int day) {
 	}
 	
 	
-	//3 check 
+	//3 patern de dayofweek
+	//dayof week est positif toute est beau
 	if ((doomsday - ((doomsdate - day) % 7)) > 0)
 	{
 		dayOfWeek = (doomsday - ((doomsdate - day)) % 7 );
 	}
+	//dayofweek est negatif MAIS doomsdate - day = 0
 	else if ((doomsdate - day) == 0)
 	{
 		dayOfWeek = ((doomsday + ((day - doomsdate) % 7)) % 7);
 	}
+	//dayofweek est negatif 
 	else
 	{
 		dayOfWeek = ((doomsday + ((day - doomsdate)%7)) % 7 ) + 7;
 	}
-
+	//corrige les reponse au dessus de 6
 	if (dayOfWeek > 6)
 	{
 		dayOfWeek = dayOfWeek - 7 ;
@@ -195,7 +239,7 @@ int isLeapYear(int year)
 {
 
 	int leapYear;
-
+	//check si leap year
 	if ((year % 4) == 0) {
 		if ((year % 100) == 0) 
 		{
@@ -217,15 +261,15 @@ int isLeapYear(int year)
 	{
 		leapYear = FALSE;
 	}
-
+	
 	return leapYear;
 
 }
 
-zedoomsday(int year)
+int zedoomsday(int year)
 {
 	int doomsday;
-
+	//merci wikipedia
 	doomsday = (TUESDAY + year + (year / 4) - (year / 100) + (year / 400)) % 7;
 
 	return doomsday;

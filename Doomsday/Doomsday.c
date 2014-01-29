@@ -29,7 +29,7 @@
 
 int dayOfWeek(int doomsday, int leapYear, int month, int day);
 int isLeapYear(int year);
-
+int zedoomsday(int year);
 
 int day;
 int month;
@@ -76,11 +76,15 @@ int main(int argc, char *argv[]) {
 	printf("Enter Year(YYYY)\n");
 	scanf("%d", &year);
 
-	doomsday = (TUESDAY + year + (year / 4) - (year / 100) + (year / 400)) % 7;
-	printf("%d is doomsday\n", doomsday);
-	int isLeapYear(int year);
-	int dayOfWeek(int doomsday, int leapYear, int month, int day);
-	printf("%d is day of week", dayOfWeek);
+	//doomsday = (TUESDAY + year + (year / 4) - (year / 100) + (year / 400)) % 7;
+
+	isLeapYear(year);
+	zedoomsday(year);
+	dayOfWeek(doomsday, leapYear, month, day);
+	int answer;
+	answer = dayOfWeek(doomsday, leapYear, month, day);
+
+	printf("%d is day of week\n", answer);
 
 	return EXIT_SUCCESS;
 }
@@ -94,13 +98,6 @@ int dayOfWeek(int doomsday, int leapYear, int month, int day) {
 	
 	int dayOfWeek;
 	int doomsdate;
-
-	// INSERT YOUR CODE HERE
-	
-	printf("%d is month\n", month);
-	printf("%d is day\n", day);
-	printf("New Check\n");
-	
 
 	//doomsday = 31/1(32ifleap), 28/2(29ifleap), 0/3, 4/4, 9/5, 6/6, 11/7, 8/8, 5/9, 10/10, 7/11, 12/12
 	//aka if doomsday = jeudi = le 4 avril est un jeudi
@@ -167,32 +164,27 @@ int dayOfWeek(int doomsday, int leapYear, int month, int day) {
 	{
 		doomsdate = 12;
 	}
-	printf("%d is doomsdate\n", doomsdate);
 	
-	//faut kisspasskekchose icitte
+	
+	//3 check 
 	if ((doomsday - ((doomsdate - day) % 7)) > 0)
 	{
 		dayOfWeek = (doomsday - ((doomsdate - day)) % 7 );
-		printf("+\n");
 	}
 	else if ((doomsdate - day) == 0)
 	{
 		dayOfWeek = ((doomsday + ((day - doomsdate) % 7)) % 7);
-		printf("-\n");
 	}
-
 	else
 	{
 		dayOfWeek = ((doomsday + ((day - doomsdate)%7)) % 7 ) + 7;
-		printf("-\n");
 	}
 
 	if (dayOfWeek > 6)
 	{
 		dayOfWeek = dayOfWeek - 7 ;
 	}
-	//dayOfWeek = (doomsday - (doomsdate - day)) % 7;
-	printf("%d is day of week\n\n", dayOfWeek);
+	
 
 	return (dayOfWeek);
 
@@ -225,6 +217,17 @@ int isLeapYear(int year)
 	{
 		leapYear = FALSE;
 	}
+
 	return leapYear;
+
 }
 
+zedoomsday(int year)
+{
+	int doomsday;
+
+	doomsday = (TUESDAY + year + (year / 4) - (year / 100) + (year / 400)) % 7;
+
+	return doomsday;
+
+}

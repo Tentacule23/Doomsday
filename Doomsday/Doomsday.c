@@ -29,6 +29,7 @@
 
 int dayOfWeek(int doomsday, int leapYear, int month, int day);
 int isLeapYear(int year);
+//int zedoomdate(int month);
 
 int day;
 int month;
@@ -82,7 +83,7 @@ int main(int argc, char *argv[]) {
 int dayOfWeek(int doomsday, int leapYear, int month, int day) {
 	
 	int dayOfWeek;
-	
+	int doomsdate;
 
 	// INSERT YOUR CODE HERE
 	
@@ -92,10 +93,73 @@ int dayOfWeek(int doomsday, int leapYear, int month, int day) {
 
 
 
-
-
+	if (month = 1)
+	{
+		if (leapYear == TRUE)
+		{
+			doomsdate = 32;
+		}
+		else
+		{
+			doomsdate = 31;
+		}
+	}
+	if (month = 2)
+	{
+		if (leapYear == TRUE)
+		{
+			doomsdate = 29;
+		}
+		else
+		{
+			doomsdate = 28;
+		}
+	}
+	if (month = 3)
+	{
+		doomsdate = 0;
+	}
+	if (month = 4)
+	{
+		doomsdate = 4;
+	}
+	if (month = 5)
+	{
+		doomsdate = 9;
+	}
+	if (month = 6)
+	{
+		doomsdate = 6;
+	}
+	if (month = 7)
+	{
+		doomsdate = 11;
+	}
+	if (month = 8)
+	{
+		doomsdate = 8;
+	}
+	if (month = 9)
+	{
+		doomsdate = 5;
+	}
+	if (month = 10)
+	{
+		doomsdate = 10;
+	}
+	if (month = 11)
+	{
+		doomsdate = 7;
+	}
+	if (month = 12)
+	{
+		doomsdate = 12;
+	}
+	printf("%d is doomsdate\n", doomsdate);
+	
 	//faut kisspasskekchose icitte
-
+	dayOfWeek = ((doomsdate - day) % 7) - doomsday;
+	printf("%d is day of week\n", dayOfWeek);
 
 	return (dayOfWeek);
 }
@@ -139,8 +203,10 @@ int isLeapYear(int year)
 	int leapYear;
 
 	if ((year % 4) == 0) {
-		if ((year % 100) == 0) {
-			if ((year % 400) == 0) {
+		if ((year % 100) == 0) 
+		{
+			if ((year % 400) == 0) 
+			{
 				leapYear = TRUE;
 			}
 			else
@@ -159,4 +225,75 @@ int isLeapYear(int year)
 	}
 	return leapYear;
 }
+/**int zedoomdate(int month, int leapYear)
+{
+
+	int doomsdate;
+	
+
+	if (month == 1)
+	{
+		if (leapYear == TRUE)
+		{
+			doomsdate = 32;
+		}
+		else
+		{
+			doomsdate = 31;
+		}
+	}
+	if (month == 2)
+	{
+		if (leapYear == TRUE)
+		{
+			doomsdate = 29;
+		}
+		else
+		{
+			doomsdate = 28;
+		}
+	}
+	if (month == 3)
+	{
+		doomsdate = 0;
+	}
+	if (month == 4)
+	{
+		doomsdate = 4;
+	}
+	if (month == 5)
+	{
+		doomsdate = 9;
+	}
+	if (month == 6)
+	{
+		doomsdate = 6;
+	}
+	if (month == 7)
+	{
+		doomsdate = 11;
+	}
+	if (month == 8)
+	{
+		doomsdate = 8;
+	}
+	if (month == 9)
+	{
+		doomsdate = 5;
+	}
+	if (month == 10)
+	{
+		doomsdate = 10;
+	}
+	if (month == 11)
+	{
+		doomsdate = 7;
+	}
+	if (month == 12)
+	{
+		doomsdate = 12;
+	}
+	printf("%d", doomsdate);
+		return doomsdate;
+}**/
 

@@ -91,7 +91,8 @@ int dayOfWeek(int doomsday, int leapYear, int month, int day) {
 	doomsday = (TUESDAY + year + (year / 4) - (year / 100) + (year / 400))%7;
 	printf("%d is doomsday\n", doomsday);
 
-
+	//doomsday = 31/1, 28/2, 0/3, 4/4, 5/9, 6/6, 7/11, 8/8, 9/5, 10/10, 11/7, 12/12
+	//aka if doomsday = jeudi = le 4 avril est un jeudi
 
 	if (month == 1)
 	{

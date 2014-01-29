@@ -93,7 +93,7 @@ int dayOfWeek(int doomsday, int leapYear, int month, int day) {
 
 
 
-	if (month = 1)
+	if (month == 1)
 	{
 		if (leapYear == TRUE)
 		{
@@ -104,7 +104,7 @@ int dayOfWeek(int doomsday, int leapYear, int month, int day) {
 			doomsdate = 31;
 		}
 	}
-	if (month = 2)
+	if (month == 2)
 	{
 		if (leapYear == TRUE)
 		{
@@ -115,7 +115,7 @@ int dayOfWeek(int doomsday, int leapYear, int month, int day) {
 			doomsdate = 28;
 		}
 	}
-	if (month = 3)
+	if (month == 3)
 	{
 		doomsdate = 0;
 	}
@@ -123,35 +123,35 @@ int dayOfWeek(int doomsday, int leapYear, int month, int day) {
 	{
 		doomsdate = 4;
 	}
-	if (month = 5)
+	if (month == 5)
 	{
 		doomsdate = 9;
 	}
-	if (month = 6)
+	if (month == 6)
 	{
 		doomsdate = 6;
 	}
-	if (month = 7)
+	if (month == 7)
 	{
 		doomsdate = 11;
 	}
-	if (month = 8)
+	if (month == 8)
 	{
 		doomsdate = 8;
 	}
-	if (month = 9)
+	if (month == 9)
 	{
 		doomsdate = 5;
 	}
-	if (month = 10)
+	if (month == 10)
 	{
 		doomsdate = 10;
 	}
-	if (month = 11)
+	if (month == 11)
 	{
 		doomsdate = 7;
 	}
-	if (month = 12)
+	if (month == 12)
 	{
 		doomsdate = 12;
 	}

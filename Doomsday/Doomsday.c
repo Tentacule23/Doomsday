@@ -29,16 +29,16 @@
 #define FALSE 0
 #define DAYS_PER_WEEK 7
 
-int dayOfWeek(int doomsday, int leapYear, int month, int day);
+int dayOfWeek(int doomsDay, int leapYear, int month, int day);
 int isLeapYear(int year);
-int zedoomsday(int year);
+int zeDoomsDay(int year);
 
 int day;
 int month;
 int year;
-int doomsday;
+int doomsDay;
 int leapYear;
-int ansdayOfWeek;
+int ansDayOfWeek;
 
 int main(int argc, char *argv[]) {
 
@@ -92,37 +92,37 @@ int main(int argc, char *argv[]) {
 	
 
 	isLeapYear(year);
-	zedoomsday(year);
-	dayOfWeek(zedoomsday(year), isLeapYear(year), month, day);
+	zeDoomsDay(year);
+	dayOfWeek(zeDoomsDay(year), isLeapYear(year), month, day);
 
-	ansdayOfWeek = dayOfWeek(zedoomsday(year), isLeapYear(year), month, day);
+	ansDayOfWeek = dayOfWeek(zeDoomsDay(year), isLeapYear(year), month, day);
 	
 	//tranforme ansdayofweek en jour de semaine parce que je sais pas comment faire autrement
-	if (ansdayOfWeek == 0)
+	if (ansDayOfWeek == 0)
 	{
 		printf("The %d/%d/%d is a Thursday!\n", day, month, year);
 	}
-	if (ansdayOfWeek == 1)
+	else if (ansDayOfWeek == 1)
 	{
 		printf("The %d/%d/%d is a Friday!\n", day, month, year);
 	}
-	if (ansdayOfWeek == 2)
+	else if (ansDayOfWeek == 2)
 	{
 		printf("The %d/%d/%d is a Saturday!\n", day, month, year);
 	}
-	if (ansdayOfWeek == 3)
+	else if (ansDayOfWeek == 3)
 	{
 		printf("The %d/%d/%d is a Sunday!\n", day, month, year);
 	}
-	if (ansdayOfWeek == 4)
+	else if (ansDayOfWeek == 4)
 	{
 		printf("The %d/%d/%d is a Monday!\n", day, month, year);
 	}
-	if (ansdayOfWeek == 5)
+	else if (ansDayOfWeek == 5)
 	{
 		printf("The %d/%d/%d is a Tuesday!\n", day, month, year);
 	}
-	if (ansdayOfWeek == 6)
+	else if (ansDayOfWeek == 6)
 	{
 		printf("The %d/%d/%d is a Wednesday!\n", day, month, year);
 	}
@@ -135,10 +135,10 @@ int main(int argc, char *argv[]) {
 // leap year, this function return the day of the week for any
 // given month and day in the year.
 
-int dayOfWeek(int doomsday, int leapYear, int month, int day) {
+int dayOfWeek(int doomsDay, int leapYear, int month, int day) {
 	
 	int dayOfWeek;
-	int doomsdate;
+	int doomsDate;
 
 	//doomsday = 31/1(32ifleap), 28/2(29ifleap), 0/3, 4/4, 9/5, 6/6, 11/7, 8/8, 5/9, 10/10, 7/11, 12/12
 	//aka if doomsday = jeudi = le 4 avril est un jeudi
@@ -147,81 +147,81 @@ int dayOfWeek(int doomsday, int leapYear, int month, int day) {
 	{
 		if (leapYear == TRUE)
 		{
-			doomsdate = 32;
+			doomsDate = 32;
 		}
 		else
 		{
-			doomsdate = 31;
+			doomsDate = 31;
 		}
 	}
-	if (month == 2)
+	else if (month == 2)
 	{
 		if (leapYear == TRUE)
 		{
-			doomsdate = 29;
+			doomsDate = 29;
 		}
 		else
 		{
-			doomsdate = 28;
+			doomsDate = 28;
 		}
 	}
-	if (month == 3)
+	else if (month == 3)
 	{
-		doomsdate = 0;
+		doomsDate = 0;
 	}
-	if (month == 4)
+	else if (month == 4)
 	{
-		doomsdate = 4;
+		doomsDate = 4;
 	}
-	if (month == 5)
+	else if (month == 5)
 	{
-		doomsdate = 9;
+		doomsDate = 9;
 	}
-	if (month == 6)
+	else if (month == 6)
 	{
-		doomsdate = 6;
+		doomsDate = 6;
 	}
-	if (month == 7)
+	else if (month == 7)
 	{
-		doomsdate = 11;
+		doomsDate = 11;
 	}
-	if (month == 8)
+	else if (month == 8)
 	{
-		doomsdate = 8;
+		doomsDate = 8;
 	}
-	if (month == 9)
+	else if (month == 9)
 	{
-		doomsdate = 5;
+		doomsDate = 5;
 	}
-	if (month == 10)
+	else if (month == 10)
 	{
-		doomsdate = 10;
+		doomsDate = 10;
 	}
-	if (month == 11)
+	else if (month == 11)
 	{
-		doomsdate = 7;
+		doomsDate = 7;
 	}
-	if (month == 12)
+	else if (month == 12)
 	{
-		doomsdate = 12;
+		doomsDate = 12;
 	}
 	
 	
 	//3 patern de dayofweek
 	//dayof week est positif toute est beau
-	if ((doomsday - ((doomsdate - day) % 7)) > 0)
+	if ((doomsDay - ((doomsDate - day) % 7)) > 0)
 	{
-		dayOfWeek = (doomsday - ((doomsdate - day)) % 7 );
+		dayOfWeek = (doomsDay - ((doomsDate - day)) % 7 );
 	}
 	//dayofweek est negatif MAIS doomsdate - day = 0
-	else if ((doomsdate - day) == 0)
+	else if ((doomsDate - day) == 0)
 	{
-		dayOfWeek = ((doomsday + ((day - doomsdate) % 7)) % 7);
+		dayOfWeek = ((doomsDay + ((day - doomsDate) % 7)) % 7);
 	}
 	//dayofweek est negatif 
 	else
 	{
-		dayOfWeek = ((doomsday + ((day - doomsdate)%7)) % 7 ) + 7;
+		dayOfWeek = ((doomsDay + ((day - doomsDate)%7)) % 7 ) + 7;
 	}
 	//corrige les reponse au dessus de 6
 	if (dayOfWeek > 6)
@@ -266,12 +266,13 @@ int isLeapYear(int year)
 
 }
 
-int zedoomsday(int year)
+int zeDoomsDay(int year)
 {
-	int doomsday;
+	int doomsDay;
 	//merci wikipedia
-	doomsday = (TUESDAY + year + (year / 4) - (year / 100) + (year / 400)) % 7;
+	//http://en.wikipedia.org/wiki/Doomsday_rule
+	doomsDay = (TUESDAY + year + (year / 4) - (year / 100) + (year / 400)) % 7;
 
-	return doomsday;
+	return doomsDay;
 
 }
